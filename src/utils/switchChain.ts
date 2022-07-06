@@ -1,5 +1,5 @@
 import { Connector } from '@web3-react/types'
-import { coinbaseWallet, fortmatic, gnosisSafe, injected, network, walletConnect } from 'connectors'
+import { coinbaseWallet, fortmatic, gnosisSafe, infura, injected, walletConnect } from 'connectors'
 import { CHAIN_INFO } from 'constants/chainInfo'
 import { ALL_SUPPORTED_CHAIN_IDS, SupportedChainId } from 'constants/chains'
 import { INFURA_NETWORK_URLS } from 'constants/infura'
@@ -37,7 +37,7 @@ export function isChainAllowed(connector: Connector, chainId: number) {
     case injected:
     case coinbaseWallet:
     case walletConnect:
-    case network:
+    case infura:
     case gnosisSafe:
       return ALL_SUPPORTED_CHAIN_IDS.includes(chainId)
     default:
@@ -48,7 +48,7 @@ export function isChainAllowed(connector: Connector, chainId: number) {
 export const switchChain = async (connector: Connector, chainId: number) => {
   if (!isChainAllowed(connector, chainId)) {
     throw new Error(`Chain ${chainId} not supported for connector (${typeof connector})`)
-  } else if (connector === walletConnect || connector === network) {
+  } else if (connector === walletConnect || connector === infura) {
     await connector.activate(chainId)
   } else {
     const info = CHAIN_INFO[chainId]

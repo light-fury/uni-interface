@@ -16,7 +16,7 @@ export enum ConnectionType {
   COINBASE_WALLET = 'COINBASE_WALLET',
   WALLET_CONNECT = 'WALLET_CONNECT',
   FORTMATIC = 'FORTMATIC',
-  NETWORK = 'NETWORK',
+  INFURA = 'INFURA',
   GNOSIS_SAFE = 'GNOSIS_SAFE',
 }
 
@@ -24,7 +24,7 @@ function onError(error: Error) {
   console.debug(`web3-react error: ${error}`)
 }
 
-export const [network, networkHooks] = initializeConnector<Network>(
+export const [infura, infuraHooks] = initializeConnector<Network>(
   (actions) => new Network({ actions, urlMap: INFURA_NETWORK_URLS, defaultChainId: 1 })
 )
 

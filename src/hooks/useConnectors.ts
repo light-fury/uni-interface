@@ -37,7 +37,7 @@ export default function useConnectors() {
     )
 
     // Add network connection last as it should be the fallback.
-    connections.push(getConnectionForConnectionType(ConnectionType.NETWORK))
+    connections.push(getConnectionForConnectionType(ConnectionType.INFURA))
 
     // Convert to web3-react's representation of connectors.
     const web3Connectors: [Connector, Web3ReactHooks][] = connections.map(({ connector, hooks }) => [connector, hooks])

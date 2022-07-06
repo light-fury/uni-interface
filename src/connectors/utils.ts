@@ -7,10 +7,10 @@ import {
   fortmaticHooks,
   gnosisSafe,
   gnosisSafeHooks,
+  infura,
+  infuraHooks,
   injected,
   injectedHooks,
-  network,
-  networkHooks,
   walletConnect,
   walletConnectHooks,
 } from 'connectors'
@@ -25,8 +25,8 @@ export function getConnectionTypeForConnector(connector: Connector) {
       return ConnectionType.WALLET_CONNECT
     case fortmatic:
       return ConnectionType.FORTMATIC
-    case network:
-      return ConnectionType.NETWORK
+    case infura:
+      return ConnectionType.INFURA
     case gnosisSafe:
       return ConnectionType.GNOSIS_SAFE
     default:
@@ -44,8 +44,8 @@ export function getConnectorForConnectionType(connectionType: ConnectionType) {
       return walletConnect
     case ConnectionType.FORTMATIC:
       return fortmatic
-    case ConnectionType.NETWORK:
-      return network
+    case ConnectionType.INFURA:
+      return infura
     case ConnectionType.GNOSIS_SAFE:
       return gnosisSafe
   }
@@ -61,8 +61,8 @@ export function getHooksForConnectionType(connectionType: ConnectionType) {
       return walletConnectHooks
     case ConnectionType.FORTMATIC:
       return fortmaticHooks
-    case ConnectionType.NETWORK:
-      return networkHooks
+    case ConnectionType.INFURA:
+      return infuraHooks
     case ConnectionType.GNOSIS_SAFE:
       return gnosisSafeHooks
   }
