@@ -18,6 +18,7 @@ function getRpcUrls(chainId: SupportedChainId): [string] {
     case SupportedChainId.ROPSTEN:
     case SupportedChainId.KOVAN:
     case SupportedChainId.GOERLI:
+    case SupportedChainId.EVM_M2_TN:
       return [INFURA_NETWORK_URLS[chainId]]
     case SupportedChainId.OPTIMISM:
       return ['https://mainnet.optimism.io']

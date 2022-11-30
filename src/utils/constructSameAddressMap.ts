@@ -6,6 +6,7 @@ const DEFAULT_NETWORKS = [
   SupportedChainId.RINKEBY,
   SupportedChainId.GOERLI,
   SupportedChainId.KOVAN,
+  SupportedChainId.EVM_M2_TN,
 ]
 
 export function constructSameAddressMap<T extends string>(

@@ -180,7 +180,6 @@ export function useDerivedMintInfo(
   if (!account) {
     error = <Trans>Connect Wallet</Trans>
   }
-
   if (pairState === PairState.INVALID) {
     error = error ?? <Trans>Invalid pair</Trans>
   }

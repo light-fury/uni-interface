@@ -50,7 +50,6 @@ export function useApproval(
 ] {
   const { chainId } = useWeb3React()
   const token = amountToApprove?.currency?.isToken ? amountToApprove.currency : undefined
-
   // check the current approval status
   const approvalState = useApprovalStateForSpender(amountToApprove, spender, useIsPendingApproval)
 

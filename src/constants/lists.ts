@@ -17,18 +17,18 @@ export const UNSUPPORTED_LIST_URLS: string[] = [BA_LIST]
 // this is the default list of lists that are exposed to users
 // lower index == higher priority for token import
 const DEFAULT_LIST_OF_LISTS_TO_DISPLAY: string[] = [
-  UNI_LIST,
-  COMPOUND_LIST,
-  AAVE_LIST,
-  CMC_ALL_LIST,
-  COINGECKO_LIST,
-  KLEROS_LIST,
-  GEMINI_LIST,
+  // UNI_LIST,
+  // COMPOUND_LIST,
+  // AAVE_LIST,
+  // CMC_ALL_LIST,
+  // COINGECKO_LIST,
+  // KLEROS_LIST,
+  // GEMINI_LIST,
   WRAPPED_LIST,
   SET_LIST,
-  ROLL_LIST,
-  ARBITRUM_LIST,
-  OPTIMISM_LIST,
+  // ROLL_LIST,
+  // ARBITRUM_LIST,
+  // OPTIMISM_LIST,
 ]
 
 export const DEFAULT_LIST_OF_LISTS: string[] = [

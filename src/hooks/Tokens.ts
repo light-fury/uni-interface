@@ -162,7 +162,10 @@ export function useIsUserAddedToken(currency: Currency | undefined | null): bool
 // null if loading or null was passed
 // otherwise returns the token
 export function useToken(tokenAddress?: string | null): Token | null | undefined {
+  console.log('-------------------------------')
+  console.log(tokenAddress)
   const tokens = useAllTokens()
+  console.log(tokens)
   return useTokenFromMapOrNetwork(tokens, tokenAddress)
 }
 

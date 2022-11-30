@@ -13,12 +13,13 @@ export const MULTICALL_ADDRESS: AddressMap = {
     SupportedChainId.POLYGON_MUMBAI,
     SupportedChainId.POLYGON,
   ]),
+  [SupportedChainId.EVM_M2_TN]: '0xc97e76329b84dF346b34e8cc25f0c6851561CD5B',
   [SupportedChainId.ARBITRUM_ONE]: '0xadF885960B47eA2CD9B55E6DAc6B42b7Cb2806dB',
   [SupportedChainId.ARBITRUM_RINKEBY]: '0xa501c031958F579dB7676fF1CE78AD305794d579',
 }
-export const V2_FACTORY_ADDRESSES: AddressMap = constructSameAddressMap('0x3F81a24bA3B8e471372288b342714EAEB0347cC4')
+export const V2_FACTORY_ADDRESSES: AddressMap = constructSameAddressMap('0xffDfac2bC759Eb01E544e3f5598dA97ae7cbEdD4')
 
-export const V2_ROUTER_ADDRESS: AddressMap = constructSameAddressMap('0x55F7e0Feb73269c5818184e22cE2CeBB0b024412')
+export const V2_ROUTER_ADDRESS: AddressMap = constructSameAddressMap('0xE365bb29e918787712d32d841d5E67464D04a24f')
 export const V3_ROUTER_ADDRESS: AddressMap = constructSameAddressMap('0xE592427A0AEce92De3Edee1F18E0157C05861564', [
   SupportedChainId.OPTIMISM,
   SupportedChainId.OPTIMISTIC_KOVAN,

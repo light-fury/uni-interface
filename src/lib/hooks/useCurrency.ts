@@ -85,6 +85,28 @@ export function useTokenFromMapOrNetwork(tokens: TokenMap, tokenAddress?: string
   const token: Token | undefined = address ? tokens[address] : undefined
 
   const tokenFromNetwork = useTokenFromNetwork(token ? undefined : address ? address : undefined)
+  type CustomTokenType = {
+    [key: string]: Token
+  }
+  const customTokenMap: CustomTokenType = {
+    '0xAf51054fAd1184208B3861523Df23DE53a9642c5': new Token(
+      1661,
+      '0xAf51054fAd1184208B3861523Df23DE53a9642c5',
+      18,
+      'FRT',
+      'First ERC20'
+    ),
+    '0xd3e15AA83778798Dae7bAa52C02704d196727fD6': new Token(
+      1661,
+      '0xd3e15AA83778798Dae7bAa52C02704d196727fD6',
+      18,
+      'SRD',
+      'Second ERC20'
+    ),
+  }
+  if (tokenAddress && customTokenMap[tokenAddress] !== undefined) {
+    return customTokenMap[tokenAddress]
+  }
 
   return tokenFromNetwork ?? token
 }

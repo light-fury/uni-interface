@@ -91,6 +91,15 @@ export const CHAIN_INFO: ChainInfoMap = {
     logoUrl: ethereumLogoUrl,
     nativeCurrency: { name: 'Görli Ether', symbol: 'görETH', decimals: 18 },
   },
+  [SupportedChainId.EVM_M2_TN]: {
+    networkType: NetworkType.L1,
+    docs: 'https://docs.uniswap.org/',
+    explorer: 'https://goerli.etherscan.io/',
+    infoLink: 'https://info.uniswap.org/#/',
+    label: 'Horizen Evm',
+    logoUrl: ethereumLogoUrl,
+    nativeCurrency: { name: 'Horizen', symbol: 'Zen', decimals: 18 },
+  },
   [SupportedChainId.OPTIMISM]: {
     networkType: NetworkType.L2,
     blockWaitMsBeforeWarning: ms`25m`,

@@ -263,6 +263,7 @@ const NETWORK_SELECTOR_CHAINS = [
   SupportedChainId.POLYGON,
   SupportedChainId.OPTIMISM,
   SupportedChainId.ARBITRUM_ONE,
+  SupportedChainId.EVM_M2_TN,
 ]
 
 export default function NetworkSelector() {
@@ -289,6 +290,7 @@ export default function NetworkSelector() {
 
       try {
         dispatch(updateConnectionError({ connectionType, error: undefined }))
+        console.log(targetChain)
         await switchChain(connector, targetChain)
       } catch (error) {
         console.error('Failed to switch networks', error)
