@@ -12,9 +12,6 @@ export default function useTransactionDeadline(): BigNumber | undefined {
   const { chainId } = useWeb3React()
   const ttl = useAppSelector((state) => state.user.userDeadline)
   const blockTimestamp = useCurrentBlockTimestamp()
-  console.log('ttl')
-  console.log(ttl)
-  console.log(blockTimestamp)
   return useMemo(() => {
     if (blockTimestamp && chainId && L2_CHAIN_IDS.includes(chainId)) return blockTimestamp.add(L2_DEADLINE_FROM_NOW)
     if (blockTimestamp && ttl) return blockTimestamp.add(ttl)

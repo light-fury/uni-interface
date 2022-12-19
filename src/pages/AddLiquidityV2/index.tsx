@@ -137,33 +137,22 @@ export default function AddLiquidity({
   const addTransaction = useTransactionAdder()
 
   async function onAdd() {
-    console.log(1111)
     if (!chainId || !provider || !account || !router) return
 
-    console.log(2222)
     const { [Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB } = parsedAmounts
-    console.log(3333)
-    console.log(parsedAmountA)
-    console.log(parsedAmountB)
-    console.log(currencyA)
-    console.log(currencyB)
-    console.log(deadline)
     if (!parsedAmountA || !parsedAmountB || !currencyA || !currencyB) {
       return
     }
-    console.log(1)
 
     const amountsMin = {
       [Field.CURRENCY_A]: calculateSlippageAmount(parsedAmountA, noLiquidity ? ZERO_PERCENT : allowedSlippage)[0],
       [Field.CURRENCY_B]: calculateSlippageAmount(parsedAmountB, noLiquidity ? ZERO_PERCENT : allowedSlippage)[0],
     }
-    console.log(2)
 
     let estimate,
       method: (...args: any) => Promise<TransactionResponse>,
       args: Array<string | string[] | number>,
       value: BigNumber | null
-    console.log(3)
     if (currencyA.isNative || currencyB.isNative) {
       const tokenBIsETH = currencyB.isNative
       estimate = router.estimateGas.addLiquidityETH
@@ -191,47 +180,39 @@ export default function AddLiquidity({
         BigNumber.from('1669920920').toHexString(),
       ]
       value = null
-      console.log(4)
     }
-
     setAttemptingTxn(true)
-    console.log(5)
-    await estimate(...args, value ? { value } : {})
-      .then((estimatedGasLimit) =>
-        method(...args, {
-          ...(value ? { value } : {}),
-          gasLimit: calculateGasMargin(estimatedGasLimit),
-        }).then((response) => {
-          setAttemptingTxn(false)
-
-          console.log(6)
-          addTransaction(response, {
-            type: TransactionType.ADD_LIQUIDITY_V2_POOL,
-            baseCurrencyId: currencyId(currencyA),
-            expectedAmountBaseRaw: parsedAmounts[Field.CURRENCY_A]?.quotient.toString() ?? '0',
-            quoteCurrencyId: currencyId(currencyB),
-            expectedAmountQuoteRaw: parsedAmounts[Field.CURRENCY_B]?.quotient.toString() ?? '0',
-          })
-
-          console.log(7)
-          setTxHash(response.hash)
-
-          sendEvent({
-            category: 'Liquidity',
-            action: 'Add',
-            label: [currencies[Field.CURRENCY_A]?.symbol, currencies[Field.CURRENCY_B]?.symbol].join('/'),
-          })
-        })
-      )
-      .catch((error) => {
-        setAttemptingTxn(false)
-
-        console.log(8)
-        // we only care if the error is something _other_ than the user rejected the tx
-        if (error?.code !== 4001) {
-          console.error(error)
-        }
+    // await estimate(...args, value ? { value } : {})
+    //   .then((estimatedGasLimit) => {
+    method(...args, {
+      ...(value ? { value } : {}),
+      gasLimit: calculateGasMargin(BigNumber.from('5000000')),
+    }).then((response) => {
+      setAttemptingTxn(false)
+      addTransaction(response, {
+        type: TransactionType.ADD_LIQUIDITY_V2_POOL,
+        baseCurrencyId: currencyId(currencyA),
+        expectedAmountBaseRaw: parsedAmounts[Field.CURRENCY_A]?.quotient.toString() ?? '0',
+        quoteCurrencyId: currencyId(currencyB),
+        expectedAmountQuoteRaw: parsedAmounts[Field.CURRENCY_B]?.quotient.toString() ?? '0',
       })
+
+      setTxHash(response.hash)
+
+      sendEvent({
+        category: 'Liquidity',
+        action: 'Add',
+        label: [currencies[Field.CURRENCY_A]?.symbol, currencies[Field.CURRENCY_B]?.symbol].join('/'),
+      })
+    })
+    // })
+    // .catch((error) => {
+    //   setAttemptingTxn(false)
+    //   // we only care if the error is something _other_ than the user rejected the tx
+    //   if (error?.code !== 4001) {
+    //     console.error(error)
+    //   }
+    // })
   }
 
   const modalHeader = () => {
@@ -334,11 +315,6 @@ export default function AddLiquidity({
   }, [onFieldAInput, txHash])
 
   const isCreate = history.location.pathname.includes('/create')
-  console.log(approvalA)
-  console.log(approvalB)
-  console.log(isValid)
-  console.log(currencyA)
-  console.log(currencyB)
   const addIsUnsupported = useIsSwapUnsupported(currencies?.CURRENCY_A, currencies?.CURRENCY_B)
 
   return (

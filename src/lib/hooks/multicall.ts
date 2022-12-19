@@ -14,14 +14,14 @@ export function useMultipleContractSingleData(
   ...args: SkipFirstTwoParams<typeof multicall.hooks.useMultipleContractSingleData>
 ) {
   const { chainId, latestBlock } = useCallContext()
+  console.log(chainId)
+  console.log(latestBlock)
+  console.log(...args)
   return multicall.hooks.useMultipleContractSingleData(chainId, latestBlock, ...args)
 }
 
 export function useSingleCallResult(...args: SkipFirstTwoParams<typeof multicall.hooks.useSingleCallResult>) {
   const { chainId, latestBlock } = useCallContext()
-  console.log('latestBlock')
-  console.log(chainId)
-  console.log(latestBlock)
   return multicall.hooks.useSingleCallResult(chainId, latestBlock, ...args)
 }
 

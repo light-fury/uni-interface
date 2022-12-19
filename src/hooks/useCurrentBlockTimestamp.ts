@@ -11,9 +11,5 @@ export default function useCurrentBlockTimestamp(): BigNumber | undefined {
     multicall,
     'getCurrentBlockTimestamp'
   )?.result?.[0]?.toString()
-  console.log('resultStr')
-  console.log(resultStr)
-  const callState = useSingleCallResult(multicall, 'getCurrentBlockTimestamp')
-  console.log(callState)
   return useMemo(() => (typeof resultStr === 'string' ? BigNumber.from(resultStr) : undefined), [resultStr])
 }
